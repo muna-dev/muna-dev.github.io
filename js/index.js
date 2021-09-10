@@ -3,7 +3,7 @@ let btc= [], eth = [], times = [];
 let chart = renderChart();
 
 function getData() {
-    fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum')
+    fetch('https://api.bitpanda.com/v1/ticker')
     .then(function (response) {
         return response.text();
     })
@@ -16,7 +16,7 @@ function getData() {
         console.log(error);
     });
 
-    setTimeout(getData, 2000);
+    setTimeout(getData, 60000);
 }
 
 function getTime() {
@@ -31,7 +31,8 @@ function csvToSeries(text) {
     const time = getTime();
 
     times.push(time);
-    eth.push(dataAsJson[0].current_price);
+    //btc.push(dataAsJson.BTC.EUR);
+    eth.push(dataAsJson.ETH.EUR);
 }
 
 function renderChart() {
@@ -50,15 +51,10 @@ function renderChart() {
         options: {
           title: {
             display: true,
-            text: 'Ethereum price in Euro',
-            responsive: false
+            text: 'World population per region (in millions)'
           }
         }
       });
     return graph;
-}
-
-function startup() {
-
 }
 getData();

@@ -3,7 +3,7 @@ let btc= [], eth = [], times = [];
 let chart = renderChart();
 
 function getData() {
-    fetch('https://api.bitpanda.com/v1/ticker')
+    fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=ethereum')
     .then(function (response) {
         return response.text();
     })
@@ -16,7 +16,7 @@ function getData() {
         console.log(error);
     });
 
-    setTimeout(getData, 60000);
+    setTimeout(getData, 2000);
 }
 
 function getTime() {
@@ -32,7 +32,7 @@ function csvToSeries(text) {
 
     times.push(time);
     //btc.push(dataAsJson.BTC.EUR);
-    eth.push(dataAsJson.ETH.EUR);
+    eth.push(dataAsJson.current_price);
 }
 
 function renderChart() {

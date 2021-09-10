@@ -31,8 +31,7 @@ function csvToSeries(text) {
     const time = getTime();
 
     times.push(time);
-    //btc.push(dataAsJson.BTC.EUR);
-    eth.push(dataAsJson.current_price);
+    eth.push(dataAsJson[0].current_price);
 }
 
 function renderChart() {
